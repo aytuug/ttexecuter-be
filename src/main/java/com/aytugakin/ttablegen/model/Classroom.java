@@ -16,4 +16,6 @@ public class Classroom {
     private Long id;
     private Long capacity;
     private Long classroomCode;
+    private String roomFeatures;
+
 }

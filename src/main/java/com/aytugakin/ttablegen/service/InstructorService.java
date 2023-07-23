@@ -19,10 +19,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class InstructorService {
     private final InstructorRepository instructorRepository;
-    private final InstructorConverter instructorConverter;
     public InstructorDto createInstructor(CreateInstructorRequest createInstructorRequest) {
         Instructor instructor = new Instructor(
-            createInstructorRequest.id(),
+                createInstructorRequest.id(),
                 createInstructorRequest.name(),
                 createInstructorRequest.surname(),
                 createInstructorRequest.email()
@@ -32,18 +31,18 @@ public class InstructorService {
             throw new EmailAlreadyExistException("Email Already exist for Instructor");
         }
         instructorRepository.save(instructor);
-        return instructorConverter.convertInstructorDto(instructor);
+        return InstructorConverter.MAPPER.instructorToInstructorDto(instructor);
     }
 
     public InstructorDto getInstructorById(Long id){
         return instructorRepository.findById(id)
-                .map(instructorConverter::convertInstructorDto).orElseThrow(() -> new ResourceNotFoundException("Instructor", "Id", id));
+                .map(InstructorConverter.MAPPER::instructorToInstructorDto).orElseThrow(() -> new ResourceNotFoundException("Instructor", "Id", id));
     }
 
     public List<InstructorDto> getAllInstructors(){
         List<Instructor> userList = instructorRepository.findAll();
         return userList.stream()
-                .map(instructorConverter::convertInstructorDto)
+                .map(InstructorConverter.MAPPER::instructorToInstructorDto)
                 .collect(Collectors.toList());
     }
 
@@ -55,14 +54,14 @@ public class InstructorService {
             instructorRepository.save(instructor);
         });
 
-        return instructorOptional.map(instructorConverter::convertInstructorDto).orElseThrow(() -> new ResourceNotFoundException("Instructor", "Id", id));
+        return instructorOptional.map(InstructorConverter.MAPPER::instructorToInstructorDto).orElseThrow(() -> new ResourceNotFoundException("Instructor", "Id", id));
 
     }
 
     public String deleteInstructor(Long id) {
         String username = getInstructorById(id).name();
         instructorRepository.deleteById(id);
-        return "User with username: " + username + " is deleted!";
+        return "Instructor with username: " + username + " is deleted!";
     }
 
 }

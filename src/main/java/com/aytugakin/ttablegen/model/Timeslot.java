@@ -1,4 +1,5 @@
 package com.aytugakin.ttablegen.model;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,14 +9,11 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "tUser")
-public class User {
+@Table(name = "timeslot")
+public class Timeslot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
-    private String password;
-    private String email;
-
+    private String timeSlot;
 }

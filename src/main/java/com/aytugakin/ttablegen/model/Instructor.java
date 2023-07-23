@@ -1,7 +1,11 @@
 package com.aytugakin.ttablegen.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,4 +21,7 @@ public class Instructor {
     private String name;
     private String surname;
     private String email;
+
+
+
 }

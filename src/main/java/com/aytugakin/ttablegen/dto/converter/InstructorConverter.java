@@ -2,23 +2,17 @@ package com.aytugakin.ttablegen.dto.converter;
 
 import com.aytugakin.ttablegen.dto.InstructorDto;
 import com.aytugakin.ttablegen.model.Instructor;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-@Component
-public class InstructorConverter {
-    public Instructor convertInstructor(InstructorDto instructorDto) {
-        return Instructor.builder()
-                .id(instructorDto.id())
-                .name(instructorDto.name())
-                .surname(instructorDto.surname())
-                .email(instructorDto.email()).build();
-    }
+import java.util.List;
 
-    public InstructorDto convertInstructorDto(Instructor instructor) {
-        return InstructorDto.builder()
-                .id(instructor.getId())
-                .name(instructor.getName())
-                .surname(instructor.getSurname())
-                .email(instructor.getEmail()).build();
-    }
+@Mapper
+public interface InstructorConverter {
+
+    InstructorConverter MAPPER = Mappers.getMapper(InstructorConverter.class);
+    Instructor instructorDtoToInstructor(InstructorDto instructorDto);
+    InstructorDto instructorToInstructorDto(Instructor instructor);
+
+
 }
