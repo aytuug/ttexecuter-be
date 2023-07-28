@@ -3,6 +3,7 @@ package com.aytugakin.ttablegen.controller;
 import com.aytugakin.ttablegen.dto.InstructorDto;
 import com.aytugakin.ttablegen.dto.request.CreateInstructorRequest;
 import com.aytugakin.ttablegen.dto.request.UpdateInstructorRequest;
+import com.aytugakin.ttablegen.dto.response.InstructorResponse;
 import com.aytugakin.ttablegen.service.InstructorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,21 +17,21 @@ import java.util.List;
 public class InstructorController {
     private final InstructorService instructorService;
     @PostMapping
-    public ResponseEntity<InstructorDto> createInstructor(@RequestBody CreateInstructorRequest createInstructorRequest){
+    public ResponseEntity<InstructorResponse> createInstructor(@RequestBody CreateInstructorRequest createInstructorRequest){
         return ResponseEntity.ok(instructorService.createInstructor(createInstructorRequest));
     }
     @GetMapping
-    public ResponseEntity<List<InstructorDto>> getAllInstructors(){
+    public ResponseEntity<List<InstructorResponse>> getAllInstructors(){
         return ResponseEntity.ok(instructorService.getAllInstructors());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<InstructorDto> getInstructorById(@PathVariable Long id){
+    public ResponseEntity<InstructorResponse> getInstructorById(@PathVariable Long id){
         return ResponseEntity.ok(instructorService.getInstructorById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<InstructorDto> updateInstructor(@PathVariable Long id, @RequestBody UpdateInstructorRequest updateUserRequest){
+    public ResponseEntity<InstructorResponse> updateInstructor(@PathVariable Long id, @RequestBody UpdateInstructorRequest updateUserRequest){
         return ResponseEntity.ok(instructorService.updateInstructor(id, updateUserRequest));
     }
 

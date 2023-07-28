@@ -1,5 +1,6 @@
 package com.aytugakin.ttablegen.dto.request;
 
+import com.aytugakin.ttablegen.dto.FacultyDto;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -9,12 +10,10 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateInstructorRequest {
+public class CreateDepartmentRequest {
     private Long id;
     private String name;
-    private String surname;
-    private String email;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private CreateDepartmentRequestForInstructor department;
+    private CreateFacultyRequest faculty;
 }

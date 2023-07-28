@@ -1,13 +1,10 @@
 package com.aytugakin.ttablegen.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -16,19 +13,22 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "instructor")
-public class Instructor {
+@Table(name = "department")
+public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String surname;
-    private String email;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "department_id", referencedColumnName = "id")
+    @JoinColumn(name = "faculty_id", referencedColumnName = "id")
     @JsonManagedReference
-    private Department department;
+    private Faculty faculty;
+
+    @OneToMany(mappedBy = "department")
+    @JsonManagedReference
+    private List<Instructor> instructors;
+
 }

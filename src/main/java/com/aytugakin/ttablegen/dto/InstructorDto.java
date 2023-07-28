@@ -1,12 +1,20 @@
 package com.aytugakin.ttablegen.dto;
 
-import lombok.Builder;
+import lombok.*;
 
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
 @Builder
-public record InstructorDto(
-         Long id,
-         String name,
-         String surname,
-         String email
-) {
+@AllArgsConstructor
+@NoArgsConstructor
+public class InstructorDto {
+    private Long id;
+    private String name;
+    private String surname;
+    private String email;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
+    private DepartmentDto department;
 }

@@ -9,12 +9,9 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateInstructorRequest {
+public class CreateDepartmentRequestForInstructor {
     private Long id;
     private String name;
-    private String surname;
-    private String email;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private CreateDepartmentRequestForInstructor department;
 }
