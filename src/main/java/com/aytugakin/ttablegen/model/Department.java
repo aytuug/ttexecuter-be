@@ -1,6 +1,5 @@
 package com.aytugakin.ttablegen.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,11 +23,9 @@ public class Department {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "faculty_id", referencedColumnName = "id")
-    @JsonManagedReference
     private Faculty faculty;
 
     @OneToMany(mappedBy = "department")
-    @JsonManagedReference
     private List<Instructor> instructors;
 
 }

@@ -1,10 +1,8 @@
 package com.aytugakin.ttablegen.dto.converter;
 
 import com.aytugakin.ttablegen.dto.FacultyDto;
-import com.aytugakin.ttablegen.dto.request.CreateDepartmentRequest;
 import com.aytugakin.ttablegen.dto.request.CreateFacultyRequest;
 import com.aytugakin.ttablegen.dto.response.FacultyResponse;
-import com.aytugakin.ttablegen.model.Department;
 import com.aytugakin.ttablegen.model.Faculty;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

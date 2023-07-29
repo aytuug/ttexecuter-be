@@ -1,6 +1,5 @@
 package com.aytugakin.ttablegen.controller;
 
-import com.aytugakin.ttablegen.dto.InstructorDto;
 import com.aytugakin.ttablegen.dto.request.CreateInstructorRequest;
 import com.aytugakin.ttablegen.dto.request.UpdateInstructorRequest;
 import com.aytugakin.ttablegen.dto.response.InstructorResponse;

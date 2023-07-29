@@ -6,13 +6,12 @@ import com.aytugakin.ttablegen.model.Instructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-import java.util.List;
-
 @Mapper
 public interface InstructorConverter {
 
     InstructorConverter MAPPER = Mappers.getMapper(InstructorConverter.class);
     Instructor instructorDtoToInstructor(InstructorDto instructorDto);
+    Instructor instructorResponseToInstructor(InstructorResponse instructorResponse);
     InstructorDto instructorToInstructorDto(Instructor instructor);
     InstructorResponse instructorToInstructorResponse(Instructor instructor);
 

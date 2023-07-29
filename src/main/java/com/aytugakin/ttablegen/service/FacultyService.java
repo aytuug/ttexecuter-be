@@ -1,24 +1,16 @@
 package com.aytugakin.ttablegen.service;
 
-import com.aytugakin.ttablegen.dto.FacultyDto;
-import com.aytugakin.ttablegen.dto.InstructorDto;
-import com.aytugakin.ttablegen.dto.converter.DepartmentConverter;
 import com.aytugakin.ttablegen.dto.converter.FacultyConverter;
-import com.aytugakin.ttablegen.dto.converter.InstructorConverter;
 import com.aytugakin.ttablegen.dto.request.CreateFacultyRequest;
-import com.aytugakin.ttablegen.dto.request.CreateInstructorRequest;
 import com.aytugakin.ttablegen.dto.request.UpdateFacultyRequest;
-import com.aytugakin.ttablegen.dto.request.UpdateInstructorRequest;
 import com.aytugakin.ttablegen.dto.response.FacultyResponse;
 import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
 import com.aytugakin.ttablegen.exception.ResourceNotFoundException;
 import com.aytugakin.ttablegen.model.Faculty;
-import com.aytugakin.ttablegen.model.Instructor;
 import com.aytugakin.ttablegen.repository.FacultyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;

@@ -1,6 +1,5 @@
 package com.aytugakin.ttablegen.service;
 
-import com.aytugakin.ttablegen.dto.InstructorDto;
 import com.aytugakin.ttablegen.dto.converter.DepartmentConverter;
 import com.aytugakin.ttablegen.dto.converter.InstructorConverter;
 import com.aytugakin.ttablegen.dto.request.CreateInstructorRequest;
@@ -22,21 +21,22 @@ import java.util.stream.Collectors;
 public class InstructorService {
     private final InstructorRepository instructorRepository;
     public InstructorResponse createInstructor(CreateInstructorRequest createInstructorRequest) {
-        Instructor instructor = new Instructor(
-                createInstructorRequest.getId(),
-                createInstructorRequest.getName(),
-                createInstructorRequest.getSurname(),
-                createInstructorRequest.getEmail(),
-                createInstructorRequest.getCreatedDate(),
-                createInstructorRequest.getUpdatedDate(),
-                DepartmentConverter.MAPPER.departmentRequestToDepartmentForInstructor(createInstructorRequest.getDepartment())
-        );
+
         Optional<Instructor> optionalInstructor = instructorRepository.findByEmail(createInstructorRequest.getEmail());
         if (optionalInstructor.isPresent()) {
             throw new EmailAlreadyExistException("Email Already exist for Instructor");
         }
-        instructorRepository.save(instructor);
-        return InstructorConverter.MAPPER.instructorToInstructorResponse(instructor);
+        return InstructorConverter.MAPPER.instructorToInstructorResponse(instructorRepository.save(
+                Instructor.builder()
+                        .id(createInstructorRequest.getId())
+                        .name(createInstructorRequest.getName())
+                        .surname(createInstructorRequest.getSurname())
+                        .email(createInstructorRequest.getEmail())
+                        .createdDate(createInstructorRequest.getCreatedDate())
+                        .updatedDate(createInstructorRequest.getUpdatedDate())
+                        .department( DepartmentConverter.MAPPER.departmentRequestToDepartmentForInstructor(createInstructorRequest.getDepartment()))
+                        .build()
+        ));
     }
 
     public InstructorResponse getInstructorById(Long id){
@@ -61,6 +61,12 @@ public class InstructorService {
 
         return instructorOptional.map(InstructorConverter.MAPPER::instructorToInstructorResponse).orElseThrow(() -> new ResourceNotFoundException("Instructor", "Id", id));
 
+    }
+
+    public Instructor getInstructorByIdForCourse(Long id) {
+        return instructorRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Instructor", "id" , id)
+        );
     }
 
     public String deleteInstructor(Long id) {

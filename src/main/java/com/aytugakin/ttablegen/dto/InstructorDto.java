@@ -16,5 +16,4 @@ public class InstructorDto {
     private String email;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private DepartmentDto department;
 }

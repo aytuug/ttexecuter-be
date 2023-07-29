@@ -1,11 +1,11 @@
 package com.aytugakin.ttablegen.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -13,18 +13,17 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "faculty")
-public class Faculty {
-
+@Table(name = "course")
+public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private Long capacity;
+    private String courseCode;
+    private String courseName;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 
-    @OneToMany(mappedBy = "faculty")
-    @JsonManagedReference
-    private List<Department> departments;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<CourseInstructor> courseInstructors = new HashSet<>();
+
 }

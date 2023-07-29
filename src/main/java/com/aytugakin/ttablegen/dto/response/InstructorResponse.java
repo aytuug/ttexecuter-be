@@ -1,6 +1,5 @@
 package com.aytugakin.ttablegen.dto.response;
 
-import com.aytugakin.ttablegen.dto.DepartmentDto;
 import com.aytugakin.ttablegen.dto.request.CreateDepartmentRequestForInstructor;
 import lombok.*;
 
