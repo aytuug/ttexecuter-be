@@ -19,7 +19,8 @@ import java.util.Set;
 @Table(name = "instructor")
 public class Instructor {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "seqInstructorId", sequenceName = "seq_instructor_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqInstructorId")
     private Long id;
     private String name;
     private String surname;

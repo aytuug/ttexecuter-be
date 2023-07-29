@@ -15,7 +15,8 @@ import java.util.List;
 @Table(name = "department")
 public class Department {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "seqDepartmentId", sequenceName = "seq_department_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqDepartmentId")
     private Long id;
     private String name;
     private LocalDateTime createdDate;

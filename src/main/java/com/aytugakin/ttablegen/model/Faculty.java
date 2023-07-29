@@ -17,7 +17,8 @@ import java.util.List;
 public class Faculty {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "seqFacultyId", sequenceName = "seq_faculty_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqFacultyId")
     private Long id;
     private String name;
     private Long capacity;

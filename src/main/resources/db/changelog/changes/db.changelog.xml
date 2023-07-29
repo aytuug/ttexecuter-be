@@ -1,0 +1,155 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+    <changeSet id="create_table" author="aytuug">
+        <createTable tableName="faculty">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="capacity" type="int"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIMEZONE" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_date" type="TIMESTAMP WITHOUT TIMEZONE" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <createTable tableName="department">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="faculty_id"  type="BIGINT"/>
+        </createTable>
+
+        <createTable tableName="instructor">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="surname" type="varchar(255)"/>
+            <column name="email" type="varchar(255)"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP" />
+            <column name="department_id"  type="BIGINT"/>
+        </createTable>
+
+        <createTable tableName="course">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="course_code" type="varchar(255)"/>
+            <column name="course_name" type="varchar(255)"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP" />
+        </createTable>
+
+        <createTable tableName="course_instructor">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="course_id" type="BIGINT"/>
+            <column name="instructor_id" type="BIGINT"/>
+            <column name="validity_start_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="validity_end_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP" />
+        </createTable>
+
+        <createSequence
+                incrementBy="1"
+                minValue="1"
+                maxValue="999999999"
+                ordered="true"
+                sequenceName="seq_faculty_id"
+                startValue="1"/>
+
+        <createSequence
+                incrementBy="1"
+                minValue="1"
+                maxValue="999999999"
+                ordered="true"
+                sequenceName="seq_department_id"
+                startValue="1"/>
+
+        <createSequence
+                incrementBy="1"
+                minValue="1"
+                maxValue="999999999"
+                ordered="true"
+                sequenceName="seq_instructor_id"
+                startValue="1"/>
+    </changeSet>
+
+    <changeSet id="insert_value" author="aytuug"  >
+        <insert tableName="faculty">
+            <column  name="name" value="Mühendislik Fakültesi"/>
+            <column  name="capacity" value="5000"/>
+            <column  name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column  name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="faculty">
+            <column  name="name" value="Hukuk Fakültesi"/>
+            <column  name="capacity" value="5000"/>
+            <column  name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column  name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+
+        <insert tableName="faculty">
+            <column  name="name" value="Tıp Fakültesi"/>
+            <column  name="capacity" value="5000"/>
+            <column  name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column  name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+
+        <insert tableName="department">
+            <column name="name" value="Yazılım Mühendisliği"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+            <column name="faculty_id"  value="1"/>
+        </insert>
+        <insert tableName="department">
+            <column name="name" value="Suç Hukuku"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+            <column name="faculty_id"  value="2"/>
+        </insert>
+        <insert tableName="department">
+            <column name="name" value="Tıp"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+            <column name="faculty_id"  value="3"/>
+        </insert>
+
+        <insert tableName="instructor">
+            <column name="name" value="Engin"/>
+            <column name="surname" value="Kandiran"/>
+            <column name="email" value="ek@ttexecuter.com"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+            <column name="department_id"  value="1" />
+        </insert>
+        <insert tableName="instructor">
+            <column name="name" value="Aylin"/>
+            <column name="surname" value="Akın"/>
+            <column name="email" value="aa@ttexecuter.com"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+            <column name="department_id"  value="2" />
+        </insert>
+        <insert tableName="instructor">
+            <column name="name" value="Aytug"/>
+            <column name="surname" value="Akin"/>
+            <column name="email" value="aaaa@ttexecuter.com"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+            <column name="department_id"  value="3" />
+        </insert>
+    </changeSet>
+
+
+
+
+
+</databaseChangeLog>

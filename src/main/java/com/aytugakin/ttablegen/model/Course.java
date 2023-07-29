@@ -16,7 +16,8 @@ import java.util.Set;
 @Table(name = "course")
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "seqCourseId", sequenceName = "seq_course_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCourseId")
     private Long id;
     private String courseCode;
     private String courseName;

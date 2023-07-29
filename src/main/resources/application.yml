@@ -1,4 +1,7 @@
+# DEFAULT
 spring:
+  profiles:
+    active: default
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
@@ -7,9 +10,18 @@ spring:
   datasource:
     username: sa
     password:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:db;INIT=CREATE SCHEMA IF NOT EXISTS TTEXECUTER;
     driver-class-name: org.h2.Driver
   h2:
     console:
       enabled: true
       path: /h2
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/changes/db.changelog.xml
+    database-change-log-table: DATABASECHANGELOG
+    database-change-log-lock-table: DATABASECHANGELOGLOCK
+---
+#TEST
+
+
