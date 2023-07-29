@@ -1,7 +1,7 @@
 package com.aytugakin.ttablegen.dto.converter;
 
 import com.aytugakin.ttablegen.dto.DepartmentDto;
-import com.aytugakin.ttablegen.dto.request.CreateDepartmentRequestForInstructor;
+import com.aytugakin.ttablegen.dto.request.CreateDepartmentRequestForInstructorAndStudent;
 import com.aytugakin.ttablegen.dto.response.DepartmentResponse;
 import com.aytugakin.ttablegen.model.Department;
 import org.mapstruct.Mapper;
@@ -14,5 +14,5 @@ public interface DepartmentConverter {
     DepartmentDto departmentToDepartmentDto(Department department);
     DepartmentResponse departmentToDepartmentResponse(Department department);
 
-    Department departmentRequestToDepartmentForInstructor(CreateDepartmentRequestForInstructor createDepartmentRequestForInstructor);
+    Department departmentRequestToDepartmentForInstructor(CreateDepartmentRequestForInstructorAndStudent createDepartmentRequestForInstructorAndStudent);
 }

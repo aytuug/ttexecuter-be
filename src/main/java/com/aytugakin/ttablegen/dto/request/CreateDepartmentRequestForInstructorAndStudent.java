@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateDepartmentRequestForInstructor {
+public class CreateDepartmentRequestForInstructorAndStudent {
     private Long id;
     private String name;
     private LocalDateTime createdDate;

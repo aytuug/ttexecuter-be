@@ -57,6 +57,19 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
             <column name="validity_end_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP" />
         </createTable>
 
+        <createTable tableName="student">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="surname" type="varchar(255)"/>
+            <column name="email" type="varchar(255)"/>
+            <column name="student_no" type="varchar(255)"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP" />
+            <column name="department_id"  type="BIGINT"/>
+        </createTable>
+
         <createSequence
                 incrementBy="1"
                 minValue="1"
@@ -80,6 +93,15 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
                 ordered="true"
                 sequenceName="seq_instructor_id"
                 startValue="1"/>
+
+        <createSequence
+                incrementBy="1"
+                minValue="1"
+                maxValue="999999999"
+                ordered="true"
+                sequenceName="seq_student_id"
+                startValue="1"/>
+
     </changeSet>
 
     <changeSet id="insert_value" author="aytuug"  >
@@ -146,6 +168,35 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
             <column name="updated_date" value="2017-01-13T17:09:42.411"/>
             <column name="department_id"  value="3" />
         </insert>
+
+        <insert tableName="student">
+            <column name="name" value="Engin"/>
+            <column name="surname" value="Kandiran"/>
+            <column name="email" value="ek@ttexecuter.com"/>
+            <column name="student_no" value="3423423"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+            <column name="department_id"  value="1" />
+        </insert>
+        <insert tableName="student">
+            <column name="name" value="Aylin"/>
+            <column name="surname" value="Akın"/>
+            <column name="email" value="23423423"/>
+            <column name="student_no" value="1111"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+            <column name="department_id"  value="2" />
+        </insert>
+        <insert tableName="student">
+            <column name="name" value="Aytug"/>
+            <column name="surname" value="Akin"/>
+            <column name="email" value="111111"/>
+            <column name="student_no" value="22222"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+            <column name="department_id"  value="3" />
+        </insert>
+
     </changeSet>
 
 

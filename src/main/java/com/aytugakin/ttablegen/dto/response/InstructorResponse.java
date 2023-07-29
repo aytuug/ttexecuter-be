@@ -1,6 +1,6 @@
 package com.aytugakin.ttablegen.dto.response;
 
-import com.aytugakin.ttablegen.dto.request.CreateDepartmentRequestForInstructor;
+import com.aytugakin.ttablegen.dto.request.CreateDepartmentRequestForInstructorAndStudent;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -17,5 +17,5 @@ public class InstructorResponse {
     private String email;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private CreateDepartmentRequestForInstructor department;
+    private CreateDepartmentRequestForInstructorAndStudent department;
 }
