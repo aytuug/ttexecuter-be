@@ -27,4 +27,7 @@ public class Course {
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<CourseInstructor> courseInstructors = new HashSet<>();
 
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<CourseStudent> courseStudents = new HashSet<>();
+
 }

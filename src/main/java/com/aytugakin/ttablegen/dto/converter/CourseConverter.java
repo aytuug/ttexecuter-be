@@ -11,5 +11,6 @@ public interface CourseConverter {
     CourseConverter MAPPER = Mappers.getMapper(CourseConverter.class);
     Course courseDtoToCourse(CourseDto courseDto);
     @Mapping(source = "courseInstructors", target = "instructors")
+    @Mapping(source = "courseStudents", target = "students")
     CourseDto courseToCourseDto(Course course);
 }

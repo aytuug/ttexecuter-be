@@ -1,6 +1,7 @@
 package com.aytugakin.ttablegen.dto.request;
 
 import com.aytugakin.ttablegen.dto.CourseInstructorDto;
+import com.aytugakin.ttablegen.dto.CourseStudentDto;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,4 +19,6 @@ public class CreateCourseRequest {
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
     private Set<CourseInstructorDto> courseInstructors;
+    private Set<CourseStudentDto> courseStudents;
+
 }

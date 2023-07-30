@@ -4,9 +4,7 @@ import com.aytugakin.ttablegen.dto.CourseDto;
 import com.aytugakin.ttablegen.dto.converter.CourseConverter;
 import com.aytugakin.ttablegen.dto.request.CreateCourseRequest;
 import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
-import com.aytugakin.ttablegen.model.Course;
-import com.aytugakin.ttablegen.model.CourseInstructor;
-import com.aytugakin.ttablegen.model.Instructor;
+import com.aytugakin.ttablegen.model.*;
 import com.aytugakin.ttablegen.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +17,7 @@ import java.util.stream.Collectors;
 public class CourseService {
     private final CourseRepository courseRepository;
     private final InstructorService instructorService;
+    private final StudentService studentService;
 
     public CourseDto createCourse(CreateCourseRequest createCourseRequest) {
 
@@ -45,6 +44,21 @@ public class CourseService {
                     newCourseInstructor.setValidityStartDate(courseInstructor.getValidityStartDate());
                     newCourseInstructor.setValidityEndDate(courseInstructor.getValidityEndDate());
                     return newCourseInstructor;
+                }).collect(Collectors.toSet())
+        );
+
+
+        course.getCourseStudents().addAll(createCourseRequest.getCourseStudents()
+                .stream()
+                .map(courseStudent -> {
+                    Student student = studentService.getStudentByIdForCourse(courseStudent.getStudent().getId());
+                    CourseStudent newCourseStudent = new CourseStudent();
+                    newCourseStudent.setCourseStudentId(courseStudent.getId());
+                    newCourseStudent.setStudent(student);
+                    newCourseStudent.setCourse(course);
+                    newCourseStudent.setValidityStartDate(courseStudent.getValidityStartDate());
+                    newCourseStudent.setValidityEndDate(courseStudent.getValidityEndDate());
+                    return newCourseStudent;
                 }).collect(Collectors.toSet())
         );
 
