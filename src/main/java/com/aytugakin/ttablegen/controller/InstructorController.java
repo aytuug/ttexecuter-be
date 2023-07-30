@@ -30,8 +30,8 @@ public class InstructorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<InstructorResponse> updateInstructor(@PathVariable Long id, @RequestBody UpdateInstructorRequest updateUserRequest){
-        return ResponseEntity.ok(instructorService.updateInstructor(id, updateUserRequest));
+    public ResponseEntity<InstructorResponse> updateInstructor(@PathVariable Long id, @RequestBody UpdateInstructorRequest updateInstructorRequest){
+        return ResponseEntity.ok(instructorService.updateInstructor(id, updateInstructorRequest));
     }
 
     @DeleteMapping("/{id}")
