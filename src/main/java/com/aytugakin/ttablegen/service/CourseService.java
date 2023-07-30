@@ -2,13 +2,17 @@ package com.aytugakin.ttablegen.service;
 
 import com.aytugakin.ttablegen.dto.CourseDto;
 import com.aytugakin.ttablegen.dto.converter.CourseConverter;
+import com.aytugakin.ttablegen.dto.converter.InstructorConverter;
 import com.aytugakin.ttablegen.dto.request.CreateCourseRequest;
+import com.aytugakin.ttablegen.dto.response.InstructorResponse;
 import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
+import com.aytugakin.ttablegen.exception.ResourceNotFoundException;
 import com.aytugakin.ttablegen.model.*;
 import com.aytugakin.ttablegen.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -65,4 +69,26 @@ public class CourseService {
         courseRepository.save(course);
         return CourseConverter.MAPPER.courseToCourseDto(course);
     }
+
+    public CourseDto getCourseById(Long id){
+        return courseRepository.findById(id)
+                .map(CourseConverter.MAPPER::courseToCourseDto).orElseThrow(() -> new ResourceNotFoundException("Course", "Id", id));
+    }
+
+    public List<CourseDto> getAllCourses(){
+        List<Course> courseList = courseRepository.findAll();
+        return courseList.stream()
+                .map(CourseConverter.MAPPER::courseToCourseDto)
+                .collect(Collectors.toList());
+    }
+
+
+    public String deleteCourse(Long id) {
+        String username = getCourseById(id).getCourseName();
+        courseRepository.deleteById(id);
+        return "Course with username: " + username + " is deleted!";
+    }
+
+
+
 }
