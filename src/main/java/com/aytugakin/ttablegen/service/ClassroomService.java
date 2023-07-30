@@ -9,6 +9,7 @@ import com.aytugakin.ttablegen.dto.request.CreateInstructorRequest;
 import com.aytugakin.ttablegen.dto.request.UpdateClassroomRequest;
 import com.aytugakin.ttablegen.dto.request.UpdateInstructorRequest;
 import com.aytugakin.ttablegen.dto.response.InstructorResponse;
+import com.aytugakin.ttablegen.exception.ClassroomCodeAlreadyException;
 import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
 import com.aytugakin.ttablegen.exception.ResourceNotFoundException;
 import com.aytugakin.ttablegen.model.Classroom;
@@ -30,7 +31,7 @@ public class ClassroomService {
 
         Optional<Classroom> optionalClassroom = classroomRepository.findByRoomCode(createClassroomRequest.getRoomCode());
         if (optionalClassroom.isPresent()) {
-            throw new EmailAlreadyExistException("ClassroomCode Already exist for Classroom");
+            throw new ClassroomCodeAlreadyException("ClassroomCode Already exist for Classroom");
         }
         return ClassroomConverter.MAPPER.classroomToClassroomDto(classroomRepository.save(
                 Classroom.builder()

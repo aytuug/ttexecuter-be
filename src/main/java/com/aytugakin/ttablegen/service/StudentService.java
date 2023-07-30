@@ -10,6 +10,7 @@ import com.aytugakin.ttablegen.dto.response.InstructorResponse;
 import com.aytugakin.ttablegen.dto.response.StudentResponse;
 import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
 import com.aytugakin.ttablegen.exception.ResourceNotFoundException;
+import com.aytugakin.ttablegen.exception.StudentNoAlreadyException;
 import com.aytugakin.ttablegen.model.Instructor;
 import com.aytugakin.ttablegen.model.Student;
 import com.aytugakin.ttablegen.repository.StudentRepository;
@@ -28,7 +29,7 @@ public class StudentService {
 
         Optional<Student> optionalStudent = studentRepository.findByStudentNo(createStudentRequest.getStudentNo());
         if (optionalStudent.isPresent()) {
-            throw new EmailAlreadyExistException("StudentNo Already exist for Student");
+            throw new StudentNoAlreadyException("StudentNo Already exist for Student");
         }
         return StudentConverter.MAPPER.studentToStudentRepository(studentRepository.save(
                 Student.builder()

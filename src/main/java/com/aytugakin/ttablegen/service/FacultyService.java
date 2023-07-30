@@ -5,6 +5,7 @@ import com.aytugakin.ttablegen.dto.request.CreateFacultyRequest;
 import com.aytugakin.ttablegen.dto.request.UpdateFacultyRequest;
 import com.aytugakin.ttablegen.dto.response.FacultyResponse;
 import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
+import com.aytugakin.ttablegen.exception.FacultyNameAlreadyException;
 import com.aytugakin.ttablegen.exception.ResourceNotFoundException;
 import com.aytugakin.ttablegen.model.Faculty;
 import com.aytugakin.ttablegen.repository.FacultyRepository;
@@ -32,7 +33,7 @@ public class FacultyService {
 
         Optional<Faculty> optionalFaculty = facultyRepository.findByName(createFacultyRequest.getName());
         if (optionalFaculty.isPresent()) {
-            throw new EmailAlreadyExistException("Faculty name Already exist for Faculty");
+            throw new FacultyNameAlreadyException("Faculty name Already exist for Faculty");
         }
 
         facultyRepository.save(faculty);

@@ -5,6 +5,7 @@ import com.aytugakin.ttablegen.dto.converter.FacultyConverter;
 import com.aytugakin.ttablegen.dto.request.CreateDepartmentRequest;
 import com.aytugakin.ttablegen.dto.request.UpdateDepartmentRequest;
 import com.aytugakin.ttablegen.dto.response.DepartmentResponse;
+import com.aytugakin.ttablegen.exception.DepartmentNameAlreadyException;
 import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
 import com.aytugakin.ttablegen.exception.ResourceNotFoundException;
 import com.aytugakin.ttablegen.model.Department;
@@ -33,7 +34,7 @@ public class DepartmentService {
 
         Optional<Department> optionalDepartment = departmentRepository.findByName(createDepartmentRequest.getName());
         if (optionalDepartment.isPresent()) {
-            throw new EmailAlreadyExistException("Department name Already exist for Department");
+            throw new DepartmentNameAlreadyException("Department name Already exist for Department");
         }
 
         departmentRepository.save(department);

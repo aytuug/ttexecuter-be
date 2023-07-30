@@ -5,6 +5,7 @@ import com.aytugakin.ttablegen.dto.converter.CourseConverter;
 import com.aytugakin.ttablegen.dto.converter.InstructorConverter;
 import com.aytugakin.ttablegen.dto.request.CreateCourseRequest;
 import com.aytugakin.ttablegen.dto.response.InstructorResponse;
+import com.aytugakin.ttablegen.exception.CourseCodeAlreadyException;
 import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
 import com.aytugakin.ttablegen.exception.ResourceNotFoundException;
 import com.aytugakin.ttablegen.model.*;
@@ -27,7 +28,7 @@ public class CourseService {
 
         Optional<Course> optionalCourse = courseRepository.findByCourseCode(createCourseRequest.getCourseCode());
         if (optionalCourse.isPresent()) {
-            throw new EmailAlreadyExistException("CourseCode Already exist for Course");
+            throw new CourseCodeAlreadyException("CourseCode Already exist for Course");
         }
 
         Course course = new Course();
