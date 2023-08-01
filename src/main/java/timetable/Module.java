@@ -6,12 +6,12 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class Module {
-    private final int moduleId;
-    private final String moduleCode;
-    private final String module;
-    private final int professorIds[];
+    private final int id;
+    private final String courseCode;
+    private final String courseName;
+    private final int courseInstructors[];
     public int getRandomProfessorId(){
-        int professorId = professorIds[(int) (professorIds.length * Math.random())];
+        int professorId = courseInstructors[(int) (courseInstructors.length * Math.random())];
         return professorId;
     }
 }

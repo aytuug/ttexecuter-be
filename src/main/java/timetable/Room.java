@@ -6,7 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class Room {
-    private final int roomId;
-    private final String roomNumber;
+    private final int id;
+    private final String roomCode;
     private final int capacity;
 }

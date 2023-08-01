@@ -2,21 +2,15 @@ package com.aytugakin.ttablegen.service;
 
 import com.aytugakin.ttablegen.dto.ClassroomDto;
 import com.aytugakin.ttablegen.dto.converter.ClassroomConverter;
-import com.aytugakin.ttablegen.dto.converter.DepartmentConverter;
-import com.aytugakin.ttablegen.dto.converter.InstructorConverter;
 import com.aytugakin.ttablegen.dto.request.CreateClassroomRequest;
-import com.aytugakin.ttablegen.dto.request.CreateInstructorRequest;
 import com.aytugakin.ttablegen.dto.request.UpdateClassroomRequest;
-import com.aytugakin.ttablegen.dto.request.UpdateInstructorRequest;
-import com.aytugakin.ttablegen.dto.response.InstructorResponse;
 import com.aytugakin.ttablegen.exception.ClassroomCodeAlreadyException;
-import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
 import com.aytugakin.ttablegen.exception.ResourceNotFoundException;
 import com.aytugakin.ttablegen.model.Classroom;
-import com.aytugakin.ttablegen.model.Instructor;
 import com.aytugakin.ttablegen.repository.ClassroomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import timetable.Room;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,6 +47,13 @@ public class ClassroomService {
         List<Classroom> classroomList = classroomRepository.findAll();
         return classroomList.stream()
                 .map(ClassroomConverter.MAPPER::classroomToClassroomDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<Room> getAllRooms(){
+        List<Classroom> classroomList = classroomRepository.findAll();
+        return classroomList.stream()
+                .map(ClassroomConverter.MAPPER::classroomToRoom)
                 .collect(Collectors.toList());
     }
 

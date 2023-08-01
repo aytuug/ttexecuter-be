@@ -2,7 +2,6 @@ package com.aytugakin.ttablegen.dto;
 
 import lombok.*;
 
-
 import java.time.LocalDateTime;
 
 @Getter

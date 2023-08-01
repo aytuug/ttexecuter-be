@@ -1,9 +1,6 @@
 package com.aytugakin.ttablegen.controller;
 
-import com.aytugakin.ttablegen.dto.request.CreateInstructorRequest;
 import com.aytugakin.ttablegen.dto.request.CreateStudentRequest;
-import com.aytugakin.ttablegen.dto.request.UpdateInstructorRequest;
-import com.aytugakin.ttablegen.dto.response.InstructorResponse;
 import com.aytugakin.ttablegen.dto.response.StudentResponse;
 import com.aytugakin.ttablegen.service.StudentService;
 import lombok.RequiredArgsConstructor;

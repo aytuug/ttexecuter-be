@@ -22,12 +22,12 @@ public class Individual {
             // Loop through modules
             for (int moduleId : group.getModuleIds()) {
                 // Add random time
-                int timeslotId = timetable.getRandomTimeslot().getTimeslotId();
+                int timeslotId = timetable.getRandomTimeslot().getId();
                 newChromosome[chromosomeIndex] = timeslotId;
                 chromosomeIndex++;
 
                 // Add random room
-                int roomId = timetable.getRandomRoom().getRoomId();
+                int roomId = timetable.getRandomRoom().getId();
                 newChromosome[chromosomeIndex] = roomId;
                 chromosomeIndex++;
 

@@ -4,7 +4,6 @@ import com.aytugakin.ttablegen.dto.converter.FacultyConverter;
 import com.aytugakin.ttablegen.dto.request.CreateFacultyRequest;
 import com.aytugakin.ttablegen.dto.request.UpdateFacultyRequest;
 import com.aytugakin.ttablegen.dto.response.FacultyResponse;
-import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
 import com.aytugakin.ttablegen.exception.FacultyNameAlreadyException;
 import com.aytugakin.ttablegen.exception.ResourceNotFoundException;
 import com.aytugakin.ttablegen.model.Faculty;

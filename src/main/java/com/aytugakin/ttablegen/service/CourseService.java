@@ -2,16 +2,15 @@ package com.aytugakin.ttablegen.service;
 
 import com.aytugakin.ttablegen.dto.CourseDto;
 import com.aytugakin.ttablegen.dto.converter.CourseConverter;
-import com.aytugakin.ttablegen.dto.converter.InstructorConverter;
 import com.aytugakin.ttablegen.dto.request.CreateCourseRequest;
-import com.aytugakin.ttablegen.dto.response.InstructorResponse;
 import com.aytugakin.ttablegen.exception.CourseCodeAlreadyException;
-import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
 import com.aytugakin.ttablegen.exception.ResourceNotFoundException;
 import com.aytugakin.ttablegen.model.*;
 import com.aytugakin.ttablegen.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import timetable.Group;
+import timetable.Module;
 
 import java.util.List;
 import java.util.Optional;
@@ -83,6 +82,12 @@ public class CourseService {
                 .collect(Collectors.toList());
     }
 
+    public List<Module> getAllModules(){
+        List<Course> courseList = courseRepository.findAll();
+        return courseList.stream()
+                .map(CourseConverter.MAPPER::courseToModule)
+                .collect(Collectors.toList());
+    }
 
     public String deleteCourse(Long id) {
         String username = getCourseById(id).getCourseName();

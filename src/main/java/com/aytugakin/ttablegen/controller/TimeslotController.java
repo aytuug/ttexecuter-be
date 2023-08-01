@@ -1,7 +1,6 @@
 package com.aytugakin.ttablegen.controller;
-import com.aytugakin.ttablegen.dto.CourseDto;
+
 import com.aytugakin.ttablegen.dto.TimeslotDto;
-import com.aytugakin.ttablegen.dto.request.CreateCourseRequest;
 import com.aytugakin.ttablegen.dto.request.CreateTimeslotRequest;
 import com.aytugakin.ttablegen.service.TimeslotService;
 import lombok.RequiredArgsConstructor;
