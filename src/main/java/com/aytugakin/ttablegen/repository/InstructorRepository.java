@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface InstructorRepository extends JpaRepository<Instructor, Long> {
     Optional<Instructor> findByEmail(String email);
 
-    @Query("SELECT i.id FROM Instructor i INNER JOIN CourseInstructor ci ON i.id = ci.instructor.id WHERE ci.instructor.id = :#{#moduleId}")
+    @Query("SELECT DISTINCT (cs.course.id) FROM CourseInstructor cs WHERE cs.course.id = :#{#moduleId}")
     List<Long> findInstructorIdsByModuleId(Long moduleId);
 }

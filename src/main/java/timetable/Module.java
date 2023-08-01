@@ -11,7 +11,6 @@ public class Module {
     private final String courseName;
     private final int courseInstructors[];
     public int getRandomProfessorId() {
-        int professorId = courseInstructors[(int) (courseInstructors.length * Math.random())];
-        return professorId;
+        return courseInstructors[(int) (courseInstructors.length * Math.random())];
     }
 }
