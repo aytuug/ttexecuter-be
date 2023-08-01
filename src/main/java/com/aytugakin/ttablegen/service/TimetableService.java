@@ -1,13 +1,14 @@
 package com.aytugakin.ttablegen.service;
 
+import com.aytugakin.ttablegen.dto.CourseDto;
+import com.aytugakin.ttablegen.model.Student;
 import com.aytugakin.ttablegen.util.GeneticAlgorithm;
 import com.aytugakin.ttablegen.util.Population;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import timetable.Module;
 import timetable.*;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +17,7 @@ public class TimetableService {
     private final TimeslotService timeslotService;
     private final InstructorService instructorService;
     private final CourseService courseService;
+    private final StudentService studentService;
     public void generateTimetable() {
         Timetable timetable = initializeTimetable();
         GeneticAlgorithm ga = new GeneticAlgorithm(100, 0.01, 0.9, 2, 5);
@@ -88,22 +90,43 @@ public class TimetableService {
         }
 
         //timetable.addModule(1, "cs1", "Computer Science", new int[] { 1, 2 });
-        List<Module> modules = courseService.getAllModules();
-        for (Module module: modules) {
-            timetable.addModule(module.getId(), module.getCourseCode(), module.getCourseName(), module.getCourseInstructors());
+        List<CourseDto> courses = courseService.getAllCourses();
+        for (CourseDto course: courses) {
+            int[] instructorIds = instructorService.getCourseInstructorIds(course.getId());
+            timetable.addModule(course.getId().intValue(), course.getCourseCode(), course.getCourseName(), instructorIds);
         }
 
-        // Set up student groups and the modules they take.
-        timetable.addGroup(1, 10, new int[] { 1, 3, 4 });
-        timetable.addGroup(2, 30, new int[] { 2, 3, 5, 6 });
-        timetable.addGroup(3, 18, new int[] { 3, 4, 5 });
-        timetable.addGroup(4, 25, new int[] { 1, 4 });
-        timetable.addGroup(5, 20, new int[] { 2, 3, 5 });
-        timetable.addGroup(6, 22, new int[] { 1, 4, 5 });
-        timetable.addGroup(7, 16, new int[] { 1, 3 });
-        timetable.addGroup(8, 18, new int[] { 2, 6 });
-        timetable.addGroup(9, 24, new int[] { 1, 6 });
-        timetable.addGroup(10, 25, new int[] { 3, 4 });
+        //timetable.addGroup(1, 10, new int[] { 1, 3, 4 });
+        Set<int[]> moduleGroups = new HashSet<>();
+        List<Map<int[], Long>> studentModuleGroup = new ArrayList<>();
+        List<Student> students = studentService.findAllStudents();
+
+        for (Student student : students) {
+            int[] studentModules = courseService.getCourseIdsOfStudent(student.getId());
+            moduleGroups.add(studentModules);
+            studentModuleGroup.add(Map.of(studentModules, student.getId()));
+        }
+
+        List<int[]> moduleGroupsList = new ArrayList<>(moduleGroups);
+
+        for (int i = 0; i < moduleGroupsList.size(); i++) {
+            final int[] moduleGroup = moduleGroupsList.get(i);
+            int groupSize = getSizeByKey(studentModuleGroup, moduleGroup);
+            timetable.addGroup(i, groupSize, moduleGroup);
+        }
+
         return timetable;
+    }
+
+    public static int getSizeByKey(List<Map<int[], Long>> list, int[] key) {
+        int count = 0;
+
+        for (Map<int[], Long> map : list) {
+            if (map.containsKey(key)) {
+                count++;
+            }
+        }
+
+        return count;
     }
 }

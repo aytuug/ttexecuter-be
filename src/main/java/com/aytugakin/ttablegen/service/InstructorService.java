@@ -71,6 +71,17 @@ public class InstructorService {
 
     }
 
+    public int[] getCourseInstructorIds(Long courseId) {
+        List<Long> instructorIdsOfCourse = instructorRepository.findInstructorIdsByModuleId(courseId);
+
+        int[] instructorIdsArray = new int[instructorIdsOfCourse.size()];
+        for (int i = 0; i < instructorIdsOfCourse.size(); i++) {
+            instructorIdsArray[i] = instructorIdsOfCourse.get(i).intValue();
+        }
+
+        return instructorIdsArray;
+    }
+
     public Instructor getInstructorByIdForCourse(Long id) {
         return instructorRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Instructor", "id" , id)
