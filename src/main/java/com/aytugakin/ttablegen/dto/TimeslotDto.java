@@ -1,8 +1,5 @@
 package com.aytugakin.ttablegen.dto;
 
-import com.aytugakin.ttablegen.model.TimeEnum;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.*;
 
 import java.time.LocalDateTime;

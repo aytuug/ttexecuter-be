@@ -6,6 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class TimeslotTimetable {
-    private final int timeslotId;
-    private final String timeslot;
+    private final int id;
+    private final String timeEnum;
 }

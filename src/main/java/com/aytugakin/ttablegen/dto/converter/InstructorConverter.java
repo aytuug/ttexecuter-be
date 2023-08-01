@@ -5,6 +5,7 @@ import com.aytugakin.ttablegen.dto.response.InstructorResponse;
 import com.aytugakin.ttablegen.model.Instructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import timetable.Professor;
 
 @Mapper
 public interface InstructorConverter {
@@ -15,6 +16,7 @@ public interface InstructorConverter {
     InstructorDto instructorToInstructorDto(Instructor instructor);
     InstructorResponse instructorToInstructorResponse(Instructor instructor);
 
+    Professor instructorToProfessor(Instructor instructor);
 
 
 }

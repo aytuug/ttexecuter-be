@@ -1,17 +1,11 @@
 package com.aytugakin.ttablegen.service;
 
 import com.aytugakin.ttablegen.dto.converter.DepartmentConverter;
-import com.aytugakin.ttablegen.dto.converter.InstructorConverter;
 import com.aytugakin.ttablegen.dto.converter.StudentConverter;
-import com.aytugakin.ttablegen.dto.request.CreateInstructorRequest;
 import com.aytugakin.ttablegen.dto.request.CreateStudentRequest;
-import com.aytugakin.ttablegen.dto.request.UpdateInstructorRequest;
-import com.aytugakin.ttablegen.dto.response.InstructorResponse;
 import com.aytugakin.ttablegen.dto.response.StudentResponse;
-import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
 import com.aytugakin.ttablegen.exception.ResourceNotFoundException;
 import com.aytugakin.ttablegen.exception.StudentNoAlreadyException;
-import com.aytugakin.ttablegen.model.Instructor;
 import com.aytugakin.ttablegen.model.Student;
 import com.aytugakin.ttablegen.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;

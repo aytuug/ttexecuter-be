@@ -4,12 +4,18 @@ import com.aytugakin.ttablegen.util.GeneticAlgorithm;
 import com.aytugakin.ttablegen.util.Population;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import timetable.Section;
-import timetable.Timetable;
+import timetable.Module;
+import timetable.*;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class TimetableService {
+    private final ClassroomService classroomService;
+    private final TimeslotService timeslotService;
+    private final InstructorService instructorService;
+    private final CourseService courseService;
     public void generateTimetable() {
         Timetable timetable = initializeTimetable();
         GeneticAlgorithm ga = new GeneticAlgorithm(100, 0.01, 0.9, 2, 5);
@@ -46,59 +52,46 @@ public class TimetableService {
         for (Section bestClass : classes) {
             System.out.println("Class " + classIndex + ":");
             System.out.println("Module: " +
-                    timetable.getModule(bestClass.getModuleId()).getModuleCode());
+                    timetable.getModule(bestClass.getModuleId()).getCourseCode());
             System.out.println("Group: " +
                     timetable.getGroup(bestClass.getGroupId()).getGroupId());
             System.out.println("Room: " +
-                    timetable.getRoom(bestClass.getRoomId()).getRoomNumber());
+                    timetable.getRoom(bestClass.getRoomId()).getRoomCode());
             System.out.println("Professor: " +
-                    timetable.getProfessor(bestClass.getProfessorId()).getProfessorName());
+                    timetable.getProfessor(bestClass.getProfessorId()).getName());
             System.out.println("Time: " +
-                    timetable.getTimeslot(bestClass.getTimeslotId()).getTimeslot());
+                    timetable.getTimeslot(bestClass.getTimeslotId()).getTimeEnum());
             System.out.println("-----");
             classIndex++;
         }
     }
 
-    private static Timetable initializeTimetable() {
-        // Create timetable
+    private  Timetable initializeTimetable() {
+        
+        // timetable.addRoom(5, "F1", 25);
         Timetable timetable = new Timetable();
+        List<Room> rooms = classroomService.getAllRooms();
+        for (Room room: rooms) {
+            timetable.addRoom(room.getId(), room.getRoomCode(), room.getCapacity());
+        }
 
-        // Set up rooms
-        timetable.addRoom(1, "A1", 15);
-        timetable.addRoom(2, "B1", 30);
-        timetable.addRoom(4, "D1", 20);
-        timetable.addRoom(5, "F1", 25);
-        // Set up timeslots
-        timetable.addTimeslot(1, "Mon 9:00 - 11:00");
-        timetable.addTimeslot(2, "Mon 11:00 - 13:00");
-        timetable.addTimeslot(3, "Mon 13:00 - 15:00");
-        timetable.addTimeslot(4, "Tue 9:00 - 11:00");
-        timetable.addTimeslot(5, "Tue 11:00 - 13:00");
-        timetable.addTimeslot(6, "Tue 13:00 - 15:00");
-        timetable.addTimeslot(7, "Wed 9:00 - 11:00");
-        timetable.addTimeslot(8, "Wed 11:00 - 13:00");
-        timetable.addTimeslot(9, "Wed 13:00 - 15:00");
-        timetable.addTimeslot(10, "Thu 9:00 - 11:00");
-        timetable.addTimeslot(11, "Thu 11:00 - 13:00");
-        timetable.addTimeslot(12, "Thu 13:00 - 15:00");
-        timetable.addTimeslot(13, "Fri 9:00 - 11:00");
-        timetable.addTimeslot(14, "Fri 11:00 - 13:00");
-        timetable.addTimeslot(15, "Fri 13:00 - 15:00");
+        //timetable.addTimeslot(2, "Mon 11:00 - 13:00");
+        List<TimeslotTimetable> timeslotTimetables = timeslotService.getAllTimeslotTables();
+        for (TimeslotTimetable timeslotTimetable: timeslotTimetables) {
+            timetable.addTimeslot(timeslotTimetable.getId(), timeslotTimetable.getTimeEnum());
+        }
 
-        // Set up professors
-        timetable.addProfessor(1, "Dr P Smith");
-        timetable.addProfessor(2, "Mrs E Mitchell");
-        timetable.addProfessor(3, "Dr R Williams");
-        timetable.addProfessor(4, "Mr A Thompson");
+        //timetable.addProfessor(1, "Dr P Smith");
+        List<Professor> professors = instructorService.getAllProfessors();
+        for (Professor professor: professors) {
+            timetable.addProfessor(professor.getId(), professor.getName());
+        }
 
-        // Set up modules and define the professors that teach them
-        timetable.addModule(1, "cs1", "Computer Science", new int[] { 1, 2 });
-        timetable.addModule(2, "en1", "English", new int[] { 1, 3 });
-        timetable.addModule(3, "ma1", "Maths", new int[] { 1, 2 });
-        timetable.addModule(4, "ph1", "Physics", new int[] { 3, 4 });
-        timetable.addModule(5, "hi1", "History", new int[] { 4 });
-        timetable.addModule(6, "dr1", "Drama", new int[] { 1, 4 });
+        //timetable.addModule(1, "cs1", "Computer Science", new int[] { 1, 2 });
+        List<Module> modules = courseService.getAllModules();
+        for (Module module: modules) {
+            timetable.addModule(module.getId(), module.getCourseCode(), module.getCourseName(), module.getCourseInstructors());
+        }
 
         // Set up student groups and the modules they take.
         timetable.addGroup(1, 10, new int[] { 1, 3, 4 });

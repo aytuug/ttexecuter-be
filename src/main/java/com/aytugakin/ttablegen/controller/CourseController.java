@@ -2,8 +2,6 @@ package com.aytugakin.ttablegen.controller;
 
 import com.aytugakin.ttablegen.dto.CourseDto;
 import com.aytugakin.ttablegen.dto.request.CreateCourseRequest;
-import com.aytugakin.ttablegen.dto.request.UpdateInstructorRequest;
-import com.aytugakin.ttablegen.dto.response.InstructorResponse;
 import com.aytugakin.ttablegen.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

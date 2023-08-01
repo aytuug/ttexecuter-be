@@ -11,6 +11,7 @@ import com.aytugakin.ttablegen.model.Instructor;
 import com.aytugakin.ttablegen.repository.InstructorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import timetable.Professor;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,13 @@ public class InstructorService {
         List<Instructor> userList = instructorRepository.findAll();
         return userList.stream()
                 .map(InstructorConverter.MAPPER::instructorToInstructorResponse)
+                .collect(Collectors.toList());
+    }
+
+    public List<Professor> getAllProfessors(){
+        List<Instructor> userList = instructorRepository.findAll();
+        return userList.stream()
+                .map(InstructorConverter.MAPPER::instructorToProfessor)
                 .collect(Collectors.toList());
     }
 

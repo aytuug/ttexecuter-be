@@ -1,7 +1,6 @@
 package com.aytugakin.ttablegen.dto;
 
 import com.aytugakin.ttablegen.model.Course;
-import com.aytugakin.ttablegen.model.CourseInstructorId;
 import com.aytugakin.ttablegen.model.CourseStudentId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;

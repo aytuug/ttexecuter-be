@@ -1,22 +1,16 @@
 package com.aytugakin.ttablegen.service;
 
 import com.aytugakin.ttablegen.dto.TimeslotDto;
-import com.aytugakin.ttablegen.dto.converter.DepartmentConverter;
-import com.aytugakin.ttablegen.dto.converter.InstructorConverter;
 import com.aytugakin.ttablegen.dto.converter.TimeslotConverter;
-import com.aytugakin.ttablegen.dto.request.CreateInstructorRequest;
 import com.aytugakin.ttablegen.dto.request.CreateTimeslotRequest;
-import com.aytugakin.ttablegen.dto.response.InstructorResponse;
-import com.aytugakin.ttablegen.exception.EmailAlreadyExistException;
 import com.aytugakin.ttablegen.exception.ResourceNotFoundException;
-import com.aytugakin.ttablegen.model.Instructor;
 import com.aytugakin.ttablegen.model.Timeslot;
 import com.aytugakin.ttablegen.repository.TimeslotRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import timetable.TimeslotTimetable;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,6 +39,13 @@ public class TimeslotService {
         List<Timeslot> userList = timeslotRepository.findAll();
         return userList.stream()
                 .map(TimeslotConverter.MAPPER::timeslotToTimeslotDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<TimeslotTimetable> getAllTimeslotTables(){
+        List<Timeslot> userList = timeslotRepository.findAll();
+        return userList.stream()
+                .map(TimeslotConverter.MAPPER::timeslotToTimeslotTable)
                 .collect(Collectors.toList());
     }
 
