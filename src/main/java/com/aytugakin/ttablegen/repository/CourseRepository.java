@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface CourseRepository extends JpaRepository<Course, Long> {
     Optional<Course> findByCourseCode(String courseCode);
 
-    @Query("SELECT c.id FROM Course c INNER JOIN CourseStudent cs ON c.id = cs.course.id WHERE cs.student.id = :#{#studentId}")
+    @Query("SELECT DISTINCT(cs.course.id) FROM CourseStudent cs WHERE cs.student.id = :#{#studentId}")
     List<Long> findCourseIdsByStudentIds(Long studentId);
 }
