@@ -5,15 +5,12 @@ import com.aytugakin.ttablegen.model.Course;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import timetable.Group;
 import timetable.Module;
 
 @Mapper
 public interface CourseConverter {
     CourseConverter MAPPER = Mappers.getMapper(CourseConverter.class);
-    Course courseDtoToCourse(CourseDto courseDto);
     @Mapping(source = "courseInstructors", target = "instructors")
     @Mapping(source = "courseStudents", target = "students")
     CourseDto courseToCourseDto(Course course);
-    Module courseToModule(Course course);
 }

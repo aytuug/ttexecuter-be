@@ -51,6 +51,10 @@ public class StudentService {
                 .collect(Collectors.toList());
     }
 
+    public List<Student> findAllStudents() {
+        return studentRepository.findAll();
+    }
+
     public Student getStudentByIdForCourse(Long id) {
         return studentRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Student", "id" , id)

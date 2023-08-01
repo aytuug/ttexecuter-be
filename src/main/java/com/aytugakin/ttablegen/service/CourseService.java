@@ -9,8 +9,6 @@ import com.aytugakin.ttablegen.model.*;
 import com.aytugakin.ttablegen.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import timetable.Group;
-import timetable.Module;
 
 import java.util.List;
 import java.util.Optional;
@@ -82,11 +80,15 @@ public class CourseService {
                 .collect(Collectors.toList());
     }
 
-    public List<Module> getAllModules(){
-        List<Course> courseList = courseRepository.findAll();
-        return courseList.stream()
-                .map(CourseConverter.MAPPER::courseToModule)
-                .collect(Collectors.toList());
+    public int[] getCourseIdsOfStudent(Long studentId) {
+        List<Long> courseIdsOfStudent = courseRepository.findCourseIdsByStudentIds(studentId);
+
+        int[] courseIdsArray = new int[courseIdsOfStudent.size()];
+        for (int i = 0; i < courseIdsOfStudent.size(); i++) {
+            courseIdsArray[i] = courseIdsOfStudent.get(i).intValue();
+        }
+
+        return courseIdsArray;
     }
 
     public String deleteCourse(Long id) {
