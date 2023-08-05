@@ -13,5 +13,6 @@ public interface TimeslotConverter {
     Timeslot timeslotDtoToTimeslot(TimeslotDto timeslotDto);
     @Mapping(source = "timeslot.timeEnum.value", target = "timeEnum")
     TimeslotDto timeslotToTimeslotDto(Timeslot timeslot);
+    @Mapping(source = "timeslot.timeEnum.value", target = "timeEnum")
     TimeslotTimetable timeslotToTimeslotTable(Timeslot timeslot);
 }

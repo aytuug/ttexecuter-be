@@ -80,6 +80,38 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
             <column name="validity_end_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP" />
         </createTable>
 
+        <createTable tableName="classroom">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="room_code" type="varchar(255)"/>
+            <column name="capacity" type="BIGINT"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP" />
+        </createTable>
+
+        <createTable tableName="time_slot">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="time_enum" type="varchar(255)"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP" />
+        </createTable>
+
+        <createTable tableName="ttable">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="module_name" type="varchar(255)"/>
+            <column name="group_size" type="BIGINT"/>
+            <column name="classroom_code" type="varchar(255)"/>
+            <column name="professor_name" type="varchar(255)"/>
+            <column name="time" type="varchar(255)"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_date" type="TIMESTAMP WITHOUT TIME ZONE" defaultValueComputed="CURRENT_TIMESTAMP" />
+        </createTable>
+
         <createSequence
                 incrementBy="1"
                 minValue="1"
@@ -110,6 +142,30 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
                 maxValue="999999999"
                 ordered="true"
                 sequenceName="seq_student_id"
+                startValue="1"/>
+
+        <createSequence
+                incrementBy="1"
+                minValue="1"
+                maxValue="999999999"
+                ordered="true"
+                sequenceName="seq_classroom_id"
+                startValue="1"/>
+
+        <createSequence
+                incrementBy="1"
+                minValue="1"
+                maxValue="999999999"
+                ordered="true"
+                sequenceName="seq_timeslot_id"
+                startValue="1"/>
+
+        <createSequence
+                incrementBy="1"
+                minValue="1"
+                maxValue="999999999"
+                ordered="true"
+                sequenceName="seq_ttable_id"
                 startValue="1"/>
 
     </changeSet>
@@ -205,6 +261,44 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
             <column name="created_date" value="2017-01-13T17:09:42.411"/>
             <column name="updated_date" value="2017-01-13T17:09:42.411"/>
             <column name="department_id"  value="3" />
+        </insert>
+
+
+        <insert tableName="classroom">
+            <column name="room_code" value="CS1"/>
+            <column name="capacity" value="20"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411" />
+        </insert>
+        <insert tableName="classroom">
+            <column name="room_code" value="CS2"/>
+            <column name="capacity" value="21"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411" />
+        </insert>
+
+        <insert tableName="classroom">
+            <column name="room_code" value="CS3"/>
+            <column name="capacity" value="22"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411" />
+        </insert>
+
+
+        <insert tableName="time_slot">
+            <column name="time_enum" value="MON912"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="MON1012"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="MON1315"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
         </insert>
 
     </changeSet>

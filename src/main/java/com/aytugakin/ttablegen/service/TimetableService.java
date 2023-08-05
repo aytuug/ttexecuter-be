@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import timetable.*;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -18,6 +19,7 @@ public class TimetableService {
     private final InstructorService instructorService;
     private final CourseService courseService;
     private final StudentService studentService;
+    private final TTableService tTableService;
     public void generateTimetable() {
         Timetable timetable = initializeTimetable();
         GeneticAlgorithm ga = new GeneticAlgorithm(100, 0.01, 0.9, 2, 5);
@@ -64,6 +66,14 @@ public class TimetableService {
             System.out.println("Time: " +
                     timetable.getTimeslot(bestClass.getTimeslotId()).getTimeEnum());
             System.out.println("-----");
+            tTableService.createTtable(
+                     timetable.getModule(bestClass.getModuleId()).getCourseCode()
+                    ,timetable.getGroup(bestClass.getGroupId()).getGroupId()
+                    ,timetable.getRoom(bestClass.getRoomId()).getRoomCode()
+                    ,timetable.getProfessor(bestClass.getProfessorId()).getName()
+                    ,timetable.getTimeslot(bestClass.getTimeslotId()).getTimeEnum()
+                    ,LocalDateTime.now()
+                    ,LocalDateTime.now());
             classIndex++;
         }
     }
