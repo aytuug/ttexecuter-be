@@ -9,10 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/faculty")
+
 public class FacultyController {
     private final FacultyService facultyService;
     @PostMapping

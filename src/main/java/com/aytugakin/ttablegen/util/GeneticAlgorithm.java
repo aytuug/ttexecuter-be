@@ -80,70 +80,44 @@ public class GeneticAlgorithm {
     }
 
     public Population mutatePopulation(Population population, Timetable timetable) {
-        // Initialize new population
         Population newPopulation = new Population(this.populationSize);
-
-        // Loop over current population by fitness
         for (int populationIndex = 0; populationIndex < population.size(); populationIndex++) {
             Individual individual = population.getFittest(populationIndex);
 
-            // Create random individual to swap genes with
             Individual randomIndividual = new Individual(timetable);
 
-            // Loop over individual's genes
             for (int geneIndex = 0; geneIndex < individual.getChromosomeLength(); geneIndex++) {
-                // Skip mutation if this is an elite individual
                 if (populationIndex > this.elitismCount) {
-                    // Does this gene need mutation?
                     if (this.mutationRate > Math.random()) {
-                        // Swap for new gene
                         individual.setGene(geneIndex, randomIndividual.getGene(geneIndex));
                     }
                 }
             }
 
-            // Add individual to population
             newPopulation.setIndividual(populationIndex, individual);
         }
-
-        // Return mutated population
         return newPopulation;
     }
 
     public Population crossoverPopulation(Population population) {
-        // Create new population
         Population newPopulation = new Population(population.size());
-
-        // Loop over current population by fitness
         for (int populationIndex = 0; populationIndex < population.size(); populationIndex++) {
             Individual parent1 = population.getFittest(populationIndex);
-
-            // Apply crossover to this individual?
             if (this.crossoverRate > Math.random() && populationIndex >= this.elitismCount) {
-                // Initialize offspring
                 Individual offspring = new Individual(parent1.getChromosomeLength());
-
-                // Find second parent
                 Individual parent2 = selectParent(population);
-
-                // Loop over genome
                 for (int geneIndex = 0; geneIndex < parent1.getChromosomeLength(); geneIndex++) {
-                    // Use half of parent1's genes and half of parent2's genes
                     if (0.5 > Math.random()) {
                         offspring.setGene(geneIndex, parent1.getGene(geneIndex));
                     } else {
                         offspring.setGene(geneIndex, parent2.getGene(geneIndex));
                     }
                 }
-
-                // Add offspring to new population
                 newPopulation.setIndividual(populationIndex, offspring);
             } else {
-                // Add individual to new population without applying crossover
                 newPopulation.setIndividual(populationIndex, parent1);
             }
         }
-
         return newPopulation;
     }
 

@@ -17,14 +17,10 @@ public class Population {
     }
 
     public Population(int populationSize, Timetable timetable) {
-        // Initial population
         this.population = new Individual[populationSize];
 
-        // Loop over population size
         for (int individualCount = 0; individualCount < populationSize; individualCount++) {
-            // Create individual
             Individual individual = new Individual(timetable);
-            // Add individual to population
             this.population[individualCount] = individual;
         }
     }
@@ -49,7 +45,6 @@ public class Population {
 
 
     public Individual getFittest(int offset) {
-        // Order population by fitness
         Arrays.sort(this.population, new Comparator<Individual>() {
             @Override
             public int compare(Individual o1, Individual o2) {
@@ -62,7 +57,6 @@ public class Population {
             }
         });
 
-        // Return the fittest individual
         return this.population[offset];
     }
 

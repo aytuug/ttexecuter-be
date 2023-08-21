@@ -11,4 +11,5 @@ public class TtablegenApplication {
 	}
 	//TODO TimetableService'te groupSize'ları 0 olanları hiç db'ye yazdırma.
 	//TODO Frontend için uygun GET endpointlerini yaratmaya başla.
+	//TODO elitismCount dinamik hale getirmeye çalış.
 }

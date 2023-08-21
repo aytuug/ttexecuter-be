@@ -11,27 +11,20 @@ public class Individual {
 
     public Individual(Timetable timetable) {
         int numClasses = timetable.getNumClasses();
-
-        // 1 gene for room, 1 for time, 1 for professor
         int chromosomeLength = numClasses * 3;
-        // Create random individual
         int newChromosome[] = new int[chromosomeLength];
         int chromosomeIndex = 0;
-        // Loop through groups
         for (Group group : timetable.getGroupsAsArray()) {
             // Loop through modules
             for (int moduleId : group.getModuleIds()) {
-                // Add random time
                 int timeslotId = timetable.getRandomTimeslot().getId();
                 newChromosome[chromosomeIndex] = timeslotId;
                 chromosomeIndex++;
 
-                // Add random room
                 int roomId = timetable.getRandomRoom().getId();
                 newChromosome[chromosomeIndex] = roomId;
                 chromosomeIndex++;
 
-                // Add random professor
                 Module module = timetable.getModule(moduleId);
                 newChromosome[chromosomeIndex] = module.getRandomProfessorId();
                 chromosomeIndex++;
