@@ -9,7 +9,6 @@ public class TtablegenApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TtablegenApplication.class, args);
 	}
-	//TODO TimetableService'te groupSize'ları 0 olanları hiç db'ye yazdırma.
-	//TODO Frontend için uygun GET endpointlerini yaratmaya başla.
-	//TODO elitismCount dinamik hale getirmeye çalış.
+	//TODO Hocalar Karışıyor.
+
 }

@@ -171,119 +171,6 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
     </changeSet>
 
     <changeSet id="insert_value" author="aytuug"  >
-        <insert tableName="faculty">
-            <column  name="name" value="Mühendislik Fakültesi"/>
-            <column  name="capacity" value="5000"/>
-            <column  name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column  name="updated_date" value="2017-01-13T17:09:42.411"/>
-        </insert>
-        <insert tableName="faculty">
-            <column  name="name" value="Hukuk Fakültesi"/>
-            <column  name="capacity" value="5000"/>
-            <column  name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column  name="updated_date" value="2017-01-13T17:09:42.411"/>
-        </insert>
-
-        <insert tableName="faculty">
-            <column  name="name" value="Tıp Fakültesi"/>
-            <column  name="capacity" value="5000"/>
-            <column  name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column  name="updated_date" value="2017-01-13T17:09:42.411"/>
-        </insert>
-
-        <insert tableName="department">
-            <column name="name" value="Yazılım Mühendisliği"/>
-            <column name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
-            <column name="faculty_id"  value="1"/>
-        </insert>
-        <insert tableName="department">
-            <column name="name" value="Suç Hukuku"/>
-            <column name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
-            <column name="faculty_id"  value="2"/>
-        </insert>
-        <insert tableName="department">
-            <column name="name" value="Tıp"/>
-            <column name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
-            <column name="faculty_id"  value="3"/>
-        </insert>
-
-        <insert tableName="instructor">
-            <column name="name" value="Engin"/>
-            <column name="surname" value="Kandiran"/>
-            <column name="email" value="ek@ttexecuter.com"/>
-            <column name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
-            <column name="department_id"  value="1" />
-        </insert>
-        <insert tableName="instructor">
-            <column name="name" value="Aylin"/>
-            <column name="surname" value="Akın"/>
-            <column name="email" value="aa@ttexecuter.com"/>
-            <column name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
-            <column name="department_id"  value="2" />
-        </insert>
-        <insert tableName="instructor">
-            <column name="name" value="Aytug"/>
-            <column name="surname" value="Akin"/>
-            <column name="email" value="aaaa@ttexecuter.com"/>
-            <column name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
-            <column name="department_id"  value="3" />
-        </insert>
-
-        <insert tableName="student">
-            <column name="name" value="Engin"/>
-            <column name="surname" value="Kandiran"/>
-            <column name="email" value="ek@ttexecuter.com"/>
-            <column name="student_no" value="3423423"/>
-            <column name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
-            <column name="department_id"  value="1" />
-        </insert>
-        <insert tableName="student">
-            <column name="name" value="Aylin"/>
-            <column name="surname" value="Akın"/>
-            <column name="email" value="23423423"/>
-            <column name="student_no" value="1111"/>
-            <column name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
-            <column name="department_id"  value="2" />
-        </insert>
-        <insert tableName="student">
-            <column name="name" value="Aytug"/>
-            <column name="surname" value="Akin"/>
-            <column name="email" value="111111"/>
-            <column name="student_no" value="22222"/>
-            <column name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
-            <column name="department_id"  value="3" />
-        </insert>
-
-
-        <insert tableName="classroom">
-            <column name="room_code" value="CS1"/>
-            <column name="capacity" value="20"/>
-            <column name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column name="updated_date" value="2017-01-13T17:09:42.411" />
-        </insert>
-        <insert tableName="classroom">
-            <column name="room_code" value="CS2"/>
-            <column name="capacity" value="21"/>
-            <column name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column name="updated_date" value="2017-01-13T17:09:42.411" />
-        </insert>
-
-        <insert tableName="classroom">
-            <column name="room_code" value="CS3"/>
-            <column name="capacity" value="22"/>
-            <column name="created_date" value="2017-01-13T17:09:42.411"/>
-            <column name="updated_date" value="2017-01-13T17:09:42.411" />
-        </insert>
-
 
         <insert tableName="time_slot">
             <column name="time_enum" value="MON912"/>
@@ -300,7 +187,171 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
             <column name="created_date" value="2017-01-13T17:09:42.411"/>
             <column name="updated_date" value="2017-01-13T17:09:42.411"/>
         </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="MON1316"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="MON1417"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="MON1418"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="MON1518"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
 
+
+        <insert tableName="time_slot">
+            <column name="time_enum" value="TUE912"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="TUE1012"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="TUE1315"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="TUE1316"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="TUE1417"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="TUE1418"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="TUE1518"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+
+        <insert tableName="time_slot">
+            <column name="time_enum" value="WED912"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="WED1012"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="WED1315"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="WED1316"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="WED1417"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="WED1418"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="WED1518"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+
+        <insert tableName="time_slot">
+            <column name="time_enum" value="THU912"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="THU1012"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="THU1315"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="THU1316"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="THU1417"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="THU1418"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="THU1518"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+
+        <insert tableName="time_slot">
+            <column name="time_enum" value="FRI912"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="FRI1012"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="FRI1315"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="FRI1316"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="FRI1417"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="FRI1418"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
+        <insert tableName="time_slot">
+            <column name="time_enum" value="FRI1518"/>
+            <column name="created_date" value="2017-01-13T17:09:42.411"/>
+            <column name="updated_date" value="2017-01-13T17:09:42.411"/>
+        </insert>
     </changeSet>
 
 
