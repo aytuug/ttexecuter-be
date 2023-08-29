@@ -30,4 +30,9 @@ public class TTableService {
     public List<TTable> getMaxTTable() {
         return tTableRepository.findByMaxGroupSize();
     }
+
+    public String deleteAllTTables() {
+        tTableRepository.deleteAll();
+        return "All records deleted!";
+    }
 }

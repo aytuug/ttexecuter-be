@@ -28,4 +28,9 @@ public class TimetableController {
     public ResponseEntity<List<TTable>> getMaxTTable(){
         return ResponseEntity.ok(tTableService.getMaxTTable());
     }
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteAllTTables() {
+        return ResponseEntity.ok(tTableService.deleteAllTTables());
+    }
 }
