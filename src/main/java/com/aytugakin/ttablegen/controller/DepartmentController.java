@@ -15,6 +15,8 @@ import java.util.List;
 @RequestMapping("api/department")
 public class DepartmentController {
     private final DepartmentService departmentService;
+
+
     @PostMapping
     public ResponseEntity<DepartmentResponse> createDepartment(@RequestBody CreateDepartmentRequest createDepartmentRequest){
         return ResponseEntity.ok(departmentService.createDepartment(createDepartmentRequest));
