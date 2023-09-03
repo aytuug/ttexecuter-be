@@ -13,9 +13,5 @@ public interface InstructorRepository extends JpaRepository<Instructor, Long> {
     Optional<Instructor> findByEmail(String email);
 
     @Query("SELECT DISTINCT (cs.course.id) FROM CourseInstructor cs WHERE cs.course.id = :#{#moduleId}")
-
-
-
-
     List<Long> findInstructorIdsByModuleId(Long moduleId);
 }
